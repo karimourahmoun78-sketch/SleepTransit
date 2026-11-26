@@ -1,0 +1,4 @@
+# Netlify Proxy for Transitous Live GTFS Routing API
+/api/plan  https://api.transitous.org/api/v5/plan  200!
+/api/plan/*  https://api.transitous.org/api/v5/plan/:splat  200!
+/*  /index.html  200

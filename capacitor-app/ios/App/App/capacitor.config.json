@@ -1,0 +1,22 @@
+{
+	"appId": "com.sleeptransit.app",
+	"appName": "SleepTransit",
+	"webDir": "../web",
+	"server": {
+		"androidScheme": "https",
+		"cleartext": false
+	},
+	"plugins": {
+		"LocalNotifications": {
+			"smallIcon": "ic_stat_sleeptransit",
+			"iconColor": "#3B82F6",
+			"sound": "default"
+		}
+	},
+	"packageClassList": [
+		"AppPlugin",
+		"HapticsPlugin",
+		"LocalNotificationsPlugin",
+		"BackgroundGeolocation"
+	]
+}

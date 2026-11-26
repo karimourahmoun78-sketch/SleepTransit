@@ -1,0 +1,54 @@
+{
+  "name": "SleepTransit",
+  "short_name": "SleepTransit",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#101018",
+  "theme_color": "#101018",
+  "orientation": "portrait",
+  "description": "Le copilote intelligent pour les transports avec alertes en direct et réveil contextuel garanti.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Rentrer à la maison",
+      "short_name": "Maison",
+      "description": "Lancer un itinéraire vers votre adresse Domicile",
+      "url": "./index.html?shortcut=home",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Aller au travail",
+      "short_name": "Travail",
+      "description": "Lancer un itinéraire vers votre adresse Travail",
+      "url": "./index.html?shortcut=work",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Mode Sommeil",
+      "short_name": "Sommeil",
+      "description": "Activer le réveil contextuel GPS avant votre arrêt",
+      "url": "./index.html?tab=sleep",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Info Trafic & Direct",
+      "short_name": "Direct",
+      "description": "Consulter les alertes réseau et signalements voyageurs",
+      "url": "./index.html?tab=reports",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

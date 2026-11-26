@@ -1,0 +1,61 @@
+name: Build SleepTransit iOS IPA (iPhone)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'web/**'
+      - 'capacitor-app/**'
+
+jobs:
+  build-ios-ipa:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Capacitor dependencies & sync iOS
+        working-directory: capacitor-app
+        run: |
+          npm install --no-audit --no-fund
+          npx cap sync ios
+
+      - name: Install CocoaPods dependencies
+        working-directory: capacitor-app/ios/App
+        run: |
+          pod install --repo-update
+
+      - name: Build unsigned iOS Release app (iphoneos)
+        working-directory: capacitor-app/ios/App
+        run: |
+          xcodebuild \
+            -workspace App.xcworkspace \
+            -scheme App \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build
+
+      - name: Package SleepTransit-iOS.ipa (for Sideloadly / AltStore)
+        working-directory: capacitor-app/ios/App
+        run: |
+          mkdir -p Payload
+          cp -R build/Build/Products/Release-iphoneos/App.app Payload/
+          zip -qry SleepTransit-iOS.ipa Payload
+          ls -lh SleepTransit-iOS.ipa
+
+      - name: Upload SleepTransit-iOS.ipa artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SleepTransit-iOS-IPA
+          path: capacitor-app/ios/App/SleepTransit-iOS.ipa
+          retention-days: 30
