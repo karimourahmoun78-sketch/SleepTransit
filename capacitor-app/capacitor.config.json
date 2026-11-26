@@ -3,8 +3,13 @@
   "appName": "SleepTransit",
   "webDir": "../web",
   "server": {
+    "url": "https://sleeptransit.pages.dev",
     "androidScheme": "https",
-    "cleartext": false
+    "cleartext": false,
+    "allowNavigation": [
+      "sleeptransit.pages.dev",
+      "*.sleeptransit.pages.dev"
+    ]
   },
   "plugins": {
     "LocalNotifications": {
